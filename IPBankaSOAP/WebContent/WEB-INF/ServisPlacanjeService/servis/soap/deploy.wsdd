@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServisPlacanjeService WSDL service -->
+
+  <service name="ServisPlacanje" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.servis"/>
+      <parameter name="wsdlServiceElement" value="ServisPlacanjeService"/>
+      <parameter name="schemaQualified" value="http://model,http://soap.servis"/>
+      <parameter name="wsdlServicePort" value="ServisPlacanje"/>
+      <parameter name="className" value="servis.soap.ServisPlacanje"/>
+      <parameter name="wsdlPortType" value="ServisPlacanje"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://soap.servis" xmlns:retNS="http://soap.servis" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="uplati" qname="operNS:uplati" returnQName="retNS:uplatiReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://soap.servis" xmlns:tns="http://model" qname="pns:korisnik" type="tns:KlijentBanke"/>
+        <parameter xmlns:pns="http://soap.servis" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:iznos" type="tns:double"/>
+      </operation>
+      <parameter name="allowedMethods" value="uplati"/>
+
+      <typeMapping xmlns:ns="http://model" qname="ns:KlijentBanke" type="java:model.KlijentBanke" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

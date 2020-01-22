@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    
+    <h1>Pretraga</h1>
+    
+    <h:form id="formPretraga">
+    
+    	<div id="divPretragaInput">
+	    	<h:inputText value="#{pretragaBean.parametar}" styleClass="marginFive" onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
+	    		    <f:ajax event="change" listener="#{pretragaBean.pretraziOglase}" render="@form" execute="@form"/>
+	    	</h:inputText>
+	    	<h:selectOneMenu value="#{pretragaBean.kriterijum}" styleClass="marginFive">
+	    		<f:selectItems value="#{pretragaBean.kriterijumi}"/>
+	    		<f:ajax listener="#{pretragaBean.pretraziOglase}" render="@form" execute="@form"/>
+	    	</h:selectOneMenu>
+	    	<h:selectManyCheckbox value="#{pretragaBean.odabraneKategorije}" styleClass="marginFive">
+	    		<f:selectItems value="#{pretragaBean.kategorije}"/>
+	    		<f:ajax listener="#{pretragaBean.pretraziOglase}" render="@form" execute="@form"/>
+	    	</h:selectManyCheckbox>
+
+	    	<h:messages id="messagePretraga"/>
+    	</div>
+    	
+    	<h:outputText styleClass="marginTwenty" value="Nema rezultata." rendered="#{empty pretragaBean.oglasi and empty pretragaBean.karte}"/>
+    		<ui:repeat value="#{pretragaBean.oglasi}" var="oglas">
+				<div class="divPretragaOutput">
+		        	<h:panelGrid columns="1" styleClass="panelGridOglasi">
+		        		<h:outputText value="#{oglas.kategorija} : #{oglas.naziv}" styleClass="boldFont"/>
+			            <h:outputText value="#{oglas.lokacijaPolazak} -> #{oglas.lokacijaDolazak}"></h:outputText>
+			            <h:outputText value="#{oglas.vrijemePolaska}" converter="customDateTimeConverter"/>
+			            <h:outputText value="Za broj osoba: #{oglas.brojOsoba}"></h:outputText>
+			            <h:outputText value="#{oglas.vrijemeKreiranja}" converter="customDateTimeConverter" styleClass="smallFont"/>
+		            	<h:commandLink value="Pogledaj detaljno>>" action="#{pretragaBean.prikaziOglasDetaljno}" >
+		            		<f:param id="oglasId" name="oglasId" value="#{oglas.id}"></f:param>
+		            	</h:commandLink>
+		            	<h:commandLink rendered="#{userBean.isLinkVisible(oglas.korisnik.id)}" value="Prijavi sadržaj" action="#{pretragaBean.prijaviSadrzaj(oglas.id)}"/>
+		        	</h:panelGrid>
+	        	</div>
+			</ui:repeat>
+			
+			
+			<ui:repeat value="#{pretragaBean.karte}" var="karta">
+				<div class="divPretragaOutput">
+		        	<h:panelGrid columns="1" styleClass="panelGridOglasi">
+		        		<h:outputText value="Prevoz: #{karta.prevoz}" styleClass="boldFont"></h:outputText>
+		        		<h:outputText value="#{karta.polaziste} -> #{karta.destinacija}"></h:outputText>
+		        		<h:outputText value="Cijena: #{karta.cijena} KM"></h:outputText>
+		        		<h:outputText value="Vrijeme polaska:"></h:outputText>
+		        		<h:outputText value="#{karta.vrijemePolaska}" converter="customDateTimeConverter"/>
+		        		<h:outputText value="Vrijeme dolaska:"></h:outputText>
+		        		<h:outputText value="#{karta.vrijemeDolaska}" converter="customDateTimeConverter"/>
+			            <h:commandLink value="Kupi kartu" action="#{pretragaBean.kupiKartu(karta)}"/>
+		        	</h:panelGrid>
+	        	</div>
+			</ui:repeat>
+    </h:form>
+    	
+    </ui:composition>    
+</html>

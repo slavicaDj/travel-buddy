@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    	<h:form id="formPoruka">
+    	    <h1>Konverzacija</h1>
+    		<div>
+		    	<ui:repeat value="#{konverzacijaBean.poruke}" var="poruka">
+		    		<div id="divPoruka">
+		    			 <h:panelGrid columns="1" id="panelGridKomentari">
+			        		<h:outputText value="#{poruka.posiljalac.ime} #{poruka.posiljalac.prezime}" styleClass="boldFont"/>
+			        		<h:outputText value="#{poruka.vrijeme}"  styleClass="smallFont" converter="customDateTimeConverter"/>
+				            <h:outputText value="#{poruka.sadrzaj}"/>
+				            <h:commandLink rendered="#{userBean.isLinkVisible(poruka.posiljalac.id)}" value="Prijavi sadržaj" action="#{konverzacijaBean.prijaviSadrzaj(poruka.id)}" styleClass="smallFont">
+				            </h:commandLink>
+			        	</h:panelGrid>
+		    		</div>
+				</ui:repeat>
+				<h:outputText value="Napiši poruku..."></h:outputText><br/>
+					<h:inputTextarea value="#{konverzacijaBean.sadrzajPoruke}"/><br/>
+					<h:commandButton value="Pošalji" action="#{konverzacijaBean.posaljiPoruku}">
+						<f:ajax execute="@form" render="@form"/>
+					</h:commandButton>
+		    </div>
+		    <h:messages id="messagesPoruka"/>
+    	</h:form>
+    </ui:composition>
+</html>

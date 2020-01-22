@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head />
+    <ui:composition>
+    	<h1 class="marginLeftTwenty">Nalozi za odobravanje</h1>   	
+    	<h:form id="naloziForm">
+    		<h:outputText styleClass="marginLeftTwenty" value="Trenutno nema naloga za odobravanje." rendered="#{!odobravanjeNalogaBean.tableRendered}"/>
+    		<h:dataTable styleClass="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row" value="#{odobravanjeNalogaBean.korisnici}" var="korisnik" rendered="#{odobravanjeNalogaBean.tableRendered}">
+    			<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{korisnik.id}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ime</f:facet>
+					<h:outputText value="#{korisnik.ime}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Prezime</f:facet>
+					<h:outputText value="#{korisnik.prezime}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Korisničko ime</f:facet>
+					<h:outputText value="#{korisnik.korisnickoIme}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">E-mail</f:facet>
+					<h:outputText value="#{korisnik.email}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Datum rođenja</f:facet>
+					<h:outputText value="#{korisnik.datumRodjenja}">
+						<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Akcija</f:facet>
+					<h:commandButton value="Odobri" action="#{odobravanjeNalogaBean.odobriNalog(korisnik)}">
+						<f:ajax execute="@form" render="@form"/>
+					</h:commandButton>
+				</h:column>
+    		</h:dataTable>
+    		<h:messages id="odobriNalogMessages"></h:messages>
+    	</h:form>
+    </ui:composition>    
+</html>

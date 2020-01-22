@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+    <h:head/>
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/template.xhtml">            
+            <ui:define name="header">
+                <ui:include src="/WEB-INF/components/header_korisnik.xhtml"/>
+                <h:outputStylesheet library="css" name="body_poruke_detaljno.css"/>
+            </ui:define>
+            <ui:define name="body"> 
+                <ui:include src="/WEB-INF/components/body_poruke_detaljno.xhtml"></ui:include>
+            </ui:define>                    
+        </ui:composition>
+    </h:body>
+</html>

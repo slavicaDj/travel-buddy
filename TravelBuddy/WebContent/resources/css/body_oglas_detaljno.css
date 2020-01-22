@@ -1,0 +1,26 @@
+#divOglasDetaljno {
+	margin: 20px;
+	vertical-align:middle;
+	border:5px solid #bedee3;
+	border-radius:50px;
+	-moz-border-radius:50px;
+	-webkit-border-radius:50px;
+	
+	width:30%;
+	display:inline-block; 
+	vertical-align:middle; 
+	text-align:center;
+}
+
+.panelGridDetaljno {
+	display: inline;
+	float: none;
+	vertical-align:middle;
+}
+
+#komentar {
+	background-color: #DCDCDC; 
+	width:30%; 
+	margin:20px; 
+	padding:5px;
+}

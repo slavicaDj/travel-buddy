@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    	<h:form styleClass="marginTwenty" id="formaPrijava">
+    	    <h1>Prijavite sadržaj</h1>
+    		<h:outputText value="#{prijavaSadrzajaBean.sadrzajZaPrijavu}"></h:outputText><br/><br/>
+    		<h:outputText value="Napomena:"></h:outputText><br/>
+	    	<h:inputTextarea id="sadrzajNapomene" value="#{prijavaSadrzajaBean.napomena}"/><br/>
+	    	<h:commandButton action="#{prijavaSadrzajaBean.prijaviSadrzaj}" value="Prijavi">
+	    		<f:ajax render="@form" execute="@form"/>
+	    	</h:commandButton>
+	    	<h:messages id="messagePrijava"/>
+    	</h:form>
+    </ui:composition>
+</html>

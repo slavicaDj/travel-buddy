@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+    <h:head />
+    <ui:composition>
+  
+    	<div class="container">
+		  
+		  <div class="leftpane">
+		    <h3>Reklame</h3>
+			<h:form id="forma">
+			    	<div class="reklamaDiv">
+			    	    <h:graphicImage id="graphicImage" name="#{reklamaBean.trenutnaReklama.path}"/>
+			    	</div>
+			    <br/>
+	    		<h:outputText styleClass="sadrzaj" id="sadrzaj" value="#{reklamaBean.trenutnaReklama.sadrzaj}"></h:outputText>
+	    		<h:commandButton id="dugme" value="Hello!" action="#{reklamaBean.promijeniReklamu}" style="display:none;">
+	    			<f:ajax render="@form" execute="@form"></f:ajax>
+				</h:commandButton>
+	    	</h:form>
+		  </div>
+		  
+		  <div class="middlepane">
+		  	<h2>Pretraga</h2>
+		  	<div id="middleDiv">
+			  	<h:form>
+			  	
+			  			<div>
+			  			<h:panelGrid columns="2" styleClass="panelGridPretraga">
+				  			<h:selectOneRadio value="#{pretragaBeanGost.kategorija}" id="radioKategorija" enabledClass="radio-inline">
+					  			<f:selectItems value="#{pretragaBeanGost.kategorije}" 
+					  						   var="kat" 
+			        						   itemLabel="#{kat}" 
+			        						   itemValue="#{kat}"/>
+			        			<f:ajax listener="#{pretragaBeanGost.getOglasiTrazimNudimListener}" execute="@form" render="@form "/>
+					  		</h:selectOneRadio>
+			  			</h:panelGrid>
+						</div>
+						
+						<ui:repeat value="#{pretragaBeanGost.oglasiKategorija}" var="oglas">
+							<div id="divOglasi" style="">
+				        	<h:panelGrid columns="1" styleClass="panelGridOglasi">
+				        		<h:outputText value="#{oglas.kategorija} : #{oglas.naziv}" styleClass="boldFont"/>
+					            <h:outputText value="#{oglas.lokacijaPolazak} -> #{oglas.lokacijaDolazak}"></h:outputText>
+					            <h:outputText value="#{oglas.vrijemePolaska}" converter="customDateTimeConverter"/>
+					            <h:outputText value="Za broj osoba: #{oglas.brojOsoba}"></h:outputText>
+					            <h:outputText value="#{oglas.vrijemeKreiranja}" styleClass="smallFont" converter="customDateTimeConverter"/>
+				        	</h:panelGrid>
+				        	</div>
+						</ui:repeat>				        						
+			  	</h:form>
+		  	</div>
+		  </div>
+		  
+		  <div class="rightpane">
+		    <h3>Novosti</h3>
+		    <div id="divRightPane">
+		    <ui:repeat value="#{feedBean.feeds}" var="feed">
+		    	<h:outputLink value="#{feed.link}">
+					<h:outputText value="#{feed.title}"/>
+				</h:outputLink>
+				<br/>
+				<h:outputText styleClass="smallFont" value="#{feed.pubDate}" converter="customDateTimeConverter"/>
+				<br/>
+				<h:outputText class="feedText" value="#{feed.description}"/>
+				<br/>
+				<h:graphicImage url="#{feed.descriptionImageLink}"></h:graphicImage>
+				<br/>
+				<br/>
+		    </ui:repeat>
+			</div>
+		  </div>
+		  
+		</div>
+		
+    </ui:composition>    
+</html>

@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    <h:form id="formAzuriraj">
+    		<h1 style="margin:20px;">Podaci o oglasu</h1>
+				<div id="divPretragaOutput">
+		        	<h:panelGrid columns="2" styleClass="panelGridOglasi">
+		        		
+		        		<h:outputText value="Naziv:"/>
+		        		<h:inputText value="#{azuriranjeOglasaBean.oglas.naziv}" required="true" requiredMessage="Unesite naziv!"/>
+		        		
+		        		<h:outputText value="Kategorija:"/>
+		        		<h:selectOneRadio value="#{azuriranjeOglasaBean.oglas.kategorija}" required="true" requiredMessage="Odaberite kategoriju!">
+							<f:selectItems value="#{azuriranjeOglasaBean.kategorije}"></f:selectItems>
+						</h:selectOneRadio>
+		        		
+		        		<h:outputText value="Polazište:"/>
+		        		<h:inputText value="#{azuriranjeOglasaBean.oglas.lokacijaPolazak}" required="true" requiredMessage="Unesite polazište!"/>
+		        		
+		        		<h:outputText value="Odredište:"/>
+		        		<h:inputText value="#{azuriranjeOglasaBean.oglas.lokacijaDolazak}" required="true" requiredMessage="Unesite odredište!"/>					        		
+		        		
+		        		<h:outputText value="Broj osoba"/>
+		        		<h:inputText value="#{azuriranjeOglasaBean.oglas.brojOsoba}" required="true" requiredMessage="Unesite broj osoba!" converterMessage="Broj osoba mora biti cjelobrojna vrijednost!" validatorMessage="Broj osoba mora biti veći od 1!">
+    						<f:validateLongRange minimum="1" maximum="100"></f:validateLongRange>
+		        		</h:inputText>
+		        		
+		        		<h:outputText value="Zatvoren:"/>
+						<h:selectBooleanCheckbox label="Zatvoren" value="#{azuriranjeOglasaBean.oglas.zatvoren}"/>
+						
+						<h:outputText value="Vrijeme polaska:"/>
+		        		<p:calendar styleClass="dateTimeField" id="time" value="#{azuriranjeOglasaBean.oglas.vrijemePolaska}" pattern="dd.MM.yyyy HH:mm" required="true" requiredMessage="Unesite vrijeme polaska!">
+		        			<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+		        		</p:calendar>	
+						
+		        	</h:panelGrid>
+		        	<h:commandButton type="submit" value="Ažuriraj" action="#{azuriranjeOglasaBean.posaljiIzmjene}">
+		        		<f:ajax execute="@form" render="messageAzuriraj"/>
+		        	</h:commandButton>
+		        	<h:messages id="messageAzuriraj"/>
+	        	</div>
+    </h:form>
+    </ui:composition>    
+</html>

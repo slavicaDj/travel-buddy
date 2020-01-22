@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    	<h1 class="marginTwenty">Unesite podatke</h1>
+		<div>
+			<h:form id="registerForma" styleClass="marginTwenty">
+				<h:panelGrid columns="2">
+					<h:outputText value="Ime"/>
+					<h:inputText value="#{registerBean.korisnik.ime}" required="true" requiredMessage="Unesite ime!"/>
+					<h:outputText value="Prezime"/>
+					<h:inputText value="#{registerBean.korisnik.prezime}" required="true" requiredMessage="Unesite prezime!"/>
+					<h:outputText value="Korisničko ime"/>
+					<h:inputText value="#{registerBean.korisnik.korisnickoIme}" required="true" requiredMessage="Unesite korisničko ime!"/>
+					<h:outputText value="Lozinka"/>
+					<h:inputSecret value="#{registerBean.korisnik.lozinka}" required="true" requiredMessage="Unesite lozinku!"/>	
+					<h:outputText value="E-mail"/>
+					<h:inputText value="#{registerBean.korisnik.email}" required="true" requiredMessage="Unesite email!"/>			
+					<h:outputText value="Datum rođenja"/>
+					<p:calendar styleClass="dateTimeField" id="german" navigator="true" locale="en" styleClass="marginLeftTwenty" value="#{registerBean.korisnik.datumRodjenja}" pattern="dd.MM.yyyy HH:mm" required="true" requiredMessage="Unesite datum rođenja!"/>
+				</h:panelGrid>
+				<h:commandButton value="Registruj se" type="submit" action="#{registerBean.register}">
+				<f:ajax execute="@form" render="messageRegistrujSe" />
+				</h:commandButton><br/><br/>
+				<h:messages id="messageRegistrujSe"/>
+				<h:link value=">>Početna" outcome="/index.xhtml"/>
+			</h:form>
+		</div>
+		
+    </ui:composition>    
+</html>

@@ -1,0 +1,73 @@
+html, body {
+	font-family: Arial;
+}
+
+.ui-menubar,.ui-menu-child,.ui-menu {
+    background: white !important;
+    font-size: 14px;
+}
+
+textarea {
+	width:400px;
+	height: 50px;
+}
+
+.marginFive {
+	margin:5px;
+}
+
+.marginTwenty {
+	margin:20px;
+}
+
+.marginLeftTwenty {
+	margin-left:20px;
+}
+
+.smallFont {
+	font-size:11px;
+}
+
+.boldFont {
+	font-weight: bold;
+}
+
+.table{   
+	border-collapse:collapse;
+	width:97%;
+	margin: auto;
+}
+
+.table td {
+	vertical-align: bottom;
+	padding: 3px;
+	text-align: center;
+}
+
+.table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+
+.table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+
+.table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}
+
+.italicFont {
+	font-style: italic;
+}
+
+.panelSadrzaj {
+	margin: auto;
+	text-align: center;
+}

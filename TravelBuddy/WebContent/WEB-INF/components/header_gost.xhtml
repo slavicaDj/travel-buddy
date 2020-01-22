@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    <h:outputStylesheet library="css" name="header_gost.css"/>
+    <div class="toppane">
+    	<div class="titleDiv">
+		  	<h1>Travel Buddy</h1>
+		  	<h2>Vaš saputnik na svakom putovanju</h2>
+	  	</div>
+	  	<div class="loginDiv">
+		  	<h:form id="loginForma">
+		  		<h:panelGrid styleClass="panelGridLogin" columns="3" rendered="#{!userBean.loggedIn}">
+		  			<h:messages id="messagePrijaviSe" style="color: red"></h:messages>
+			  		<p:inputText styleClass="userpassInput" value="#{userBean.korisnickoIme}" placeholder="Korisničko ime" required="true" requiredMessage="Unesite korisničko ime!" />
+			  		<p:password styleClass="userpassInput" value="#{userBean.lozinka}" placeholder="Lozinka"  required="true" requiredMessage="Unesite lozinku!"/>
+			  		<h:outputText value=""/>
+			  		<h:outputText value=""/>
+			  		<h:commandButton id="buttonPrijaviSe" type="submit" value="Prijavi se" action="#{userBean.login}" styleClass="smallFont">
+			  			<f:ajax execute="@form" render="@form"/>
+			  		</h:commandButton>
+		  			<h:outputText value=""/>
+		  			<h:outputText value=""/>
+		  			<h:link styleClass="smallFont" value="Registracija>>" outcome="/registracija.xhtml"/>
+		  		</h:panelGrid>		  			
+		  		<h:outputText id="prvi" styleClass="marginTwenty" rendered="#{userBean.loggedIn}" value="#{userBean.dobrodosli}"/><br/>
+		  		<h:link id="drugi" styleClass="marginTwenty" rendered="#{userBean.loggedIn}" value="Korisnički dio>>" outcome="#{userBean.korisnik.admin? 'odobravanje_naloga.xhtml' : 'home.xhtml' }"></h:link>	
+		  	</h:form>
+	  	</div>
+	  </div>
+    </ui:composition>    
+</html>
+
+
+
+    

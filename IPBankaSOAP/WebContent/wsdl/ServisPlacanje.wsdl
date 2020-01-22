@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://soap.servis" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://soap.servis" xmlns:intf="http://soap.servis" xmlns:tns1="http://model" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://soap.servis" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model"/>
+   <element name="uplati">
+    <complexType>
+     <sequence>
+      <element name="korisnik" type="tns1:KlijentBanke"/>
+      <element name="iznos" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="uplatiResponse">
+    <complexType>
+     <sequence>
+      <element name="uplatiReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="KlijentBanke">
+    <sequence>
+     <element name="brojKartice" nillable="true" type="xsd:string"/>
+     <element name="cvc" nillable="true" type="xsd:string"/>
+     <element name="datumIsteka" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="ime" nillable="true" type="xsd:string"/>
+     <element name="prezime" nillable="true" type="xsd:string"/>
+     <element name="stanje" type="xsd:double"/>
+     <element name="tipKartice" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="uplatiRequest">
+
+      <wsdl:part element="impl:uplati" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="uplatiResponse">
+
+      <wsdl:part element="impl:uplatiResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ServisPlacanje">
+
+      <wsdl:operation name="uplati">
+
+         <wsdl:input message="impl:uplatiRequest" name="uplatiRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:uplatiResponse" name="uplatiResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServisPlacanjeSoapBinding" type="impl:ServisPlacanje">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="uplati">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="uplatiRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="uplatiResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServisPlacanjeService">
+
+      <wsdl:port binding="impl:ServisPlacanjeSoapBinding" name="ServisPlacanje">
+
+         <wsdlsoap:address location="http://localhost:8080/IPBankaSOAP/services/ServisPlacanje"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

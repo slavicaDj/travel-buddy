@@ -1,0 +1,45 @@
+.ui-menubar,.ui-menu-child,.ui-menu {
+    background: white !important;
+    font-size: 14px;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  font-family: Arial;
+}
+
+h1 {
+	margin:17px;
+}
+
+#divPretragaInput {
+	margin: 20px;
+}
+
+#messagePretraga {
+	color:red;
+}
+
+.divPretragaOutput {
+	margin: 20px;
+	vertical-align:middle;
+	border:5px solid #bedee3;
+	border-radius:50px;
+	-moz-border-radius:50px;
+	-webkit-border-radius:50px;
+	
+	width:30%;
+	display:inline-block; 
+	vertical-align:middle; 
+	text-align:center;
+	
+	padding:5px;
+}
+
+.panelGridOglasi {
+	display: inline;
+	float: none;
+	vertical-align:middle
+}

@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    	<h1 class="marginLeftTwenty">Izvještaji</h1>   	
+    	<h:form id="izvjestajiForm"> 
+    	
+    		<h:outputText styleClass="marginLeftTwenty" value="Od"/>
+	    	<p:calendar styleClass="marginLeftTwenty" value="#{izvjestajBean.datumOd}" pattern="dd.MM.yyyy">
+	            <p:ajax event="dateSelect" update="@form" listener="#{izvjestajBean.odabranKriterijumListener}" execute="@form" render="@form" />
+	        </p:calendar>
+	       	        	        
+	         <h:outputText value="Do" styleClass="marginLeftTwenty" />
+	        <p:calendar styleClass="marginLeftTwenty" value="#{izvjestajBean.datumDo}" placeholder="Do" pattern="dd.MM.yyyy">
+	            <p:ajax event="dateSelect" update="@form" listener="#{izvjestajBean.odabranKriterijumListener}" execute="@form" render="@form" />
+	        </p:calendar>
+    	   	
+    	   	<h2 class="marginLeftTwenty">Korisnici</h2>
+    		<p:dataTable  id="tableKorisnici" styleClass="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row" value="#{izvjestajBean.korisnici}" var="korisnik"  emptyMessage="Nema registrovanih korisnika u zadatom vremenskom intervalu." >
+    			<p:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{korisnik.id}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Ime</f:facet>
+					<h:outputText value="#{korisnik.ime}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Prezime</f:facet>
+					<h:outputText value="#{korisnik.prezime}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Korisničko ime</f:facet>
+					<h:outputText value="#{korisnik.korisnickoIme}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">E-mail</f:facet>
+					<h:outputText value="#{korisnik.email}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Datum rođenja</f:facet>
+					<h:outputText value="#{korisnik.datumRodjenja}">
+						<f:convertDateTime pattern="dd.MM.yyyy"></f:convertDateTime>
+					</h:outputText>
+				</p:column>
+    		</p:dataTable>
+    		
+    		<h:panelGroup rendered="#{!empty izvjestajBean.korisnici}">
+	    		<br/><h:outputText styleClass="marginLeftTwenty"  value="Preuzmi tabelu u .pdf formatu"/><br/>
+	    		<h:commandLink>
+			        <p:graphicImage styleClass="marginLeftTwenty"  url="https://raw.githubusercontent.com/primefaces/showcase/master/src/main/webapp/resources/demo/images/pdf.png" />
+			        <p:dataExporter type="pdf" target="tableKorisnici" fileName="korisnici" pageOnly="true" />
+			    </h:commandLink>
+		    </h:panelGroup>
+    		
+    		<h2 class="marginLeftTwenty">Oglasi</h2>
+    		<p:dataTable id="tableOglasi" styleClass="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row" value="#{izvjestajBean.oglasi}" var="oglas" emptyMessage="Nema objavljenih oglasa u zadatom vremenskom intervalu.">
+    			<p:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{oglas.id}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Naziv</f:facet>
+					<h:outputText value="#{oglas.naziv}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Kategorija</f:facet>
+					<h:outputText value="#{oglas.kategorija}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Polazište</f:facet>
+					<h:outputText value="#{oglas.lokacijaPolazak}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Dolazište</f:facet>
+					<h:outputText value="#{oglas.lokacijaDolazak}"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Vrijeme polaska</f:facet>
+					<h:outputText value="#{oglas.vrijemePolaska}" converter="customDateTimeConverter"/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Autor oglasa</f:facet>
+					<h:outputText value="#{oglas.korisnik.ime} #{oglas.korisnik.prezime}"/>
+				</p:column>
+    		</p:dataTable>
+    		
+    		<h:panelGroup  rendered="#{!empty izvjestajBean.oglasi}">
+	    		<br/><h:outputText styleClass="marginLeftTwenty" value="Preuzmi tabelu u .pdf formatu"/><br/>
+	    		<h:commandLink>
+			        <p:graphicImage styleClass="marginLeftTwenty"  url="https://raw.githubusercontent.com/primefaces/showcase/master/src/main/webapp/resources/demo/images/pdf.png" />
+			        <p:dataExporter type="pdf" target="tableOglasi" fileName="oglasi" pageOnly="true" />
+			    </h:commandLink>
+		    </h:panelGroup>
+		    
+    		<h:messages id="izvjestajiMessages"></h:messages><br/>
+    		
+    	</h:form>
+    </ui:composition>    
+</html>

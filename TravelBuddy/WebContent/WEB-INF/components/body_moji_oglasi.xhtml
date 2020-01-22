@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    <h:form>
+    		<h1 class="marginTwenty">Moji oglasi</h1>
+    		<h:outputText styleClass="marginLeftTwenty" value="Nemate objavljenih oglasa." rendered="#{empty mojiOglasiBean.oglasi}"/>
+    		<ui:repeat value="#{mojiOglasiBean.oglasi}" var="oglas">
+				<div id="divPretragaOutput">
+		        	<h:panelGrid columns="1" styleClass="panelGridOglasi">
+		        		<h:outputText value="#{oglas.kategorija} : #{oglas.naziv}" styleClass="boldFont"/>
+			            <h:outputText value="#{oglas.lokacijaPolazak} -> #{oglas.lokacijaDolazak}"></h:outputText>
+			            <h:outputText value="#{oglas.vrijemePolaska}" converter="customDateTimeConverter"/>
+			            <h:outputText value="Za broj osoba: #{oglas.brojOsoba}"></h:outputText>
+			            <h:outputText value="#{oglas.vrijemeKreiranja}" styleClass="smallFont" converter="customDateTimeConverter"/>
+		            	<h:commandLink value="Pogledaj detaljno>>" action="#{mojiOglasiBean.prikaziOglasDetaljno}" >
+		            		<f:param id="oglasId" name="oglasId" value="#{oglas.id}"></f:param>
+		            	</h:commandLink>
+		            	<h:commandLink value="Ažuriraj oglas" action="#{mojiOglasiBean.azurirajOglas(oglas.id)}"  >
+		            	</h:commandLink>
+		        	</h:panelGrid>
+	        	</div>
+			</ui:repeat>
+    </h:form>
+    </ui:composition>    
+</html>

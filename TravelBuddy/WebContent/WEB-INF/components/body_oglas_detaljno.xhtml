@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    	
+    	<h1 class="marginLeftTwenty">Informacije o oglasu</h1>
+    	
+		<div id="divOglasDetaljno">
+	         <h:panelGrid columns="1" styleClass="panelGridDetaljno">
+	        		<h:outputText value="#{oglasBean.oglasDetaljno.kategorija} : #{oglasBean.oglasDetaljno.naziv}" styleClass="boldFont"/>
+		            <h:outputText value="#{oglasBean.oglasDetaljno.lokacijaPolazak} -> #{oglasBean.oglasDetaljno.lokacijaDolazak}"></h:outputText>
+		            <h:outputText value="#{oglasBean.oglasDetaljno.vrijemePolaska}" converter="customDateTimeConverter" converterMessage="Unesite datum u formatu dd.MM.yyyy HH:mm!"/>
+		            <h:outputText value="Za broj osoba: #{oglasBean.oglasDetaljno.brojOsoba}"></h:outputText>
+		            <h:outputText value="#{oglasBean.oglasDetaljno.vrijemeKreiranja}" styleClass="smallFont" converter="customDateTimeConverter"/>
+		            <h:form>
+			            <h:commandLink rendered="#{userBean.isLinkVisible(oglasBean.oglasDetaljno.korisnik.id)}" value="Pošalji privatnu poruku" styleClass="smallFont" action="#{oglasBean.napisiPoruku(oglasBean.oglasDetaljno.korisnik.id)}"/>
+				    </h:form>
+		      </h:panelGrid>
+       	</div>
+       	
+       	<h:form id="formOglasDetaljno">
+		    <div>
+		    	<ui:repeat value="#{oglasBean.komentari}" var="komentar">
+		    		<div id="komentar">
+		    			 <h:panelGrid columns="1" id="panelGridKomentari">
+			        		<h:outputText value="#{komentar.korisnik.ime} #{komentar.korisnik.prezime}" styleClass="boldFont"/>
+				            <h:outputText value="#{komentar.sadrzaj}"></h:outputText>
+				            <h:outputText value="#{komentar.vrijeme}" styleClass="smallFont" converter="customDateTimeConverter"/>
+				            <h:commandLink rendered="#{userBean.isLinkVisible(komentar.korisnik.id)}" value="Pošalji privatnu poruku" styleClass="smallFont" action="#{oglasBean.napisiPoruku(komentar.korisnik.id)}">
+				            	<f:ajax execute="@form" render="@form"/>
+				            </h:commandLink>
+				            <h:commandLink rendered="#{userBean.isLinkVisible(komentar.korisnik.id)}" value="Prijavi sadržaj" styleClass="smallFont" action="#{oglasBean.prijaviSadrzaj(komentar)}">
+				            	<f:ajax execute="@form" render="@form"/>
+				            </h:commandLink>
+			        	</h:panelGrid>
+		    		</div>
+				</ui:repeat>
+		    </div>
+   			
+			<h:outputText value="Ostavi svoj komentar..." styleClass="marginTwenty"></h:outputText><br/>
+			<h:inputTextarea value="#{oglasBean.sadrzajKomentara}" styleClass="marginLeftTwenty"/><br/>
+			<h:commandButton value="Objavi" styleClass="marginLeftTwenty" action="#{oglasBean.objaviKomentar}">
+				<f:ajax execute="@form" render="@form"></f:ajax>
+			</h:commandButton>
+			<h:messages id="messagesOglasDetaljno"/>
+		</h:form>
+	     	
+    </ui:composition>    
+</html>

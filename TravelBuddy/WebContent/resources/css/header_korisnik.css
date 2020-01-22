@@ -1,0 +1,38 @@
+html, body {
+	font-family: Arial;
+}
+
+.ui-menubar,.ui-menu-child,.ui-menu {
+    background: white !important;
+    font-size: 14px;
+}
+
+textarea {
+	width:400px;
+	height: 50px;
+}
+
+.marginFive {
+	margin:5px;
+}
+
+.marginTwenty {
+	margin:20px;
+}
+
+.marginLeftTwenty {
+	margin-left:20px;
+}
+
+.smallFont {
+	font-size:11px;
+}
+
+.boldFont {
+	font-weight: bold;
+}
+
+.dateTimeField input {
+   width:140px;
+   height: 15px;
+}

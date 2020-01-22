@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+        <h:outputStylesheet library="css" name="header_korisnik.css"/>
+	    <h:form>
+	    <p:menubar>
+	    	<p:menuitem value="Index" icon="ui-icon-home" url="/index.xhtml"/>
+	    	<p:menuitem value="Pretraga" icon="ui-icon-search" url="/home.xhtml"/>
+	        <p:menuitem value="Objavi oglas" icon="ui-icon-plus" url="/objavi_oglas.xhtml"/>
+	        <p:menuitem value="Moje poruke" icon="ui-icon-mail-closed" url="/moje_poruke.xhtml"/>
+	        <p:menuitem value="Moji oglasi" icon="ui-icon-comment" url="/moji_oglasi.xhtml"/>
+	        <f:facet name="options">
+	            <p:commandButton type="submit" value="Odjava" action="#{userBean.logout}" icon="ui-icon-extlink" />
+	        </f:facet>
+	    </p:menubar>
+	    </h:form>
+    </ui:composition>    
+</html>
+
+
+
+    

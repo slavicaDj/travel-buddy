@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head />
+    <ui:composition>
+    	
+    	<h1 class="marginLeftTwenty">Informacije o oglasu</h1>
+    	<div>
+			<h:form id="oglasForma" styleClass="marginLeftTwenty">
+				<h:panelGrid columns="2">
+					<h:outputText value="Naziv"/>
+					<h:inputText value="#{oglasBean.noviOglas.naziv}" required="true" requiredMessage="Unesite naziv!"/>
+					<h:outputText value="Kategorija"/>
+					<h:selectOneRadio value="#{oglasBean.noviOglas.kategorija}" required="true" requiredMessage="Odaberite kategoriju!">
+						<f:selectItems value="#{oglasBean.kategorije}"></f:selectItems>
+					</h:selectOneRadio>
+					<h:outputText value="Polazište"/>
+					<h:inputText value="#{oglasBean.noviOglas.lokacijaPolazak}" required="true" requiredMessage="Unesite polazište!"/>
+					<h:outputText value="Odredište"/>
+					<h:inputText id="odrediste" value="#{oglasBean.noviOglas.lokacijaDolazak}" required="true" requiredMessage="Unesite odredište!" />					
+					<h:outputText value="Broj osoba"/>
+					<h:inputText value="#{oglasBean.noviOglas.brojOsoba}" required="true" requiredMessage="Unesite broj osoba!" converterMessage="Broj osoba mora biti cjelobrojna vrijednost!" validatorMessage="Broj osoba mora biti veći od 1!">
+    						<f:validateLongRange minimum="1" maximum="100"></f:validateLongRange>
+		        	</h:inputText>
+		        	<h:outputText value="Vrijeme polaska"/>
+					<p:calendar styleClass="dateTimeField" id="time" value="#{oglasBean.noviOglas.vrijemePolaska}" pattern="dd.MM.yyyy HH:mm" required="true" requiredMessage="Unesite vrijeme polaska!">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm"></f:convertDateTime>
+					</p:calendar>	
+				</h:panelGrid>
+				<h:commandButton value="Objavi" action="#{oglasBean.objaviOglas}">
+					<f:ajax execute="@form" render="messageObjaviOglas" onevent="callAPI"></f:ajax> 
+				</h:commandButton>			
+				<h:messages id="messageObjaviOglas"/>
+			</h:form>
+		</div>
+    	
+    </ui:composition>    
+</html>

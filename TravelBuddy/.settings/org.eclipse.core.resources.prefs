@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//src/beans/AzuriranjeOglasaBean.java=UTF-8
+encoding//src/beans/KonverzacijaBean.java=UTF-8
+encoding//src/beans/KupiKartuBean.java=UTF-8
+encoding//src/beans/PretragaBean.java=UTF-8
+encoding//src/beans/RegisterBean.java=UTF-8
+encoding//src/beans/UserBean.java=UTF-8
+encoding//src/model/KlijentBanke.java=UTF-8
+encoding//src/servis/soap/ServisPlacanje.java=UTF-8
+encoding//src/servis/soap/ServisPlacanjeService.java=UTF-8
+encoding//src/servis/soap/ServisPlacanjeServiceLocator.java=UTF-8
+encoding//src/servis/soap/ServisPlacanjeSoapBindingStub.java=UTF-8
+encoding//src/util/Consts.java=UTF-8
+encoding//src/util/EmailClient.java=UTF-8

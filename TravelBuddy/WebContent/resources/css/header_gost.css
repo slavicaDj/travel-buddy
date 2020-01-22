@@ -1,0 +1,63 @@
+html, body {
+	font-family: Arial;
+}
+
+.marginFive {
+	margin:5px;
+}
+
+.marginTwenty {
+	margin:20px;
+}
+
+.smallFont {
+	font-size:11px;
+}
+
+.boldFont {
+	font-weight: bold;
+}
+
+.toppane {
+	vertical-align: text-bottom; 
+	text-align:left;
+	display: block;
+	min-width: 100%;
+	heigth: 100%;
+	position: relative;
+}
+
+.titleDiv {
+	display: inline-block;
+    width: 45%;
+    heigth: 100%;
+    padding: 5px;
+    height: 100%;
+    margin-left:20px;
+}
+
+.userpassInput {
+	width:100px;
+	height:11px;
+}
+
+.loginDiv {
+	display: inline-block;
+    width: 45%;
+    height: 90%;
+    text-align:right;
+    position: absolute;
+    top: 30px;
+    right: 5px;
+    vertical-align:text-bottom;
+    font-size: 13px;
+}
+
+.panelGridLogin {
+	float: right;
+}
+
+.panelGridLogin td {
+    padding: 1px;
+    text-align:right;
+}
